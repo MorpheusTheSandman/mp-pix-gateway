@@ -1,30 +1,56 @@
-# API Mercado Pago (Pix e Cartao)
+# 🚀 API Mercado Pago (Pix e Cartão)
 
-Sistema gratuito para iniciantes. API enxuta para criacao de cobrancas, pagamento via Pix/cartao,
+Sistema gratuito para iniciantes. API enxuta para criacao de cobrancas, pagamento via Pix/cartao,  
 reembolso e webhooks do Mercado Pago.
 
-## Requisitos
+---
+
+## 📚 Sumário
+
+- [Requisitos](#-requisitos)
+- [Instalacao](#-instalacao)
+- [Configuracao](#-configuracao)
+- [Banco de dados](#-banco-de-dados)
+- [Rodar a API](#-rodar-a-api)
+- [Endpoints](#-endpoints)
+  - [Config](#config)
+  - [Cobrancas](#cobrancas)
+  - [Pagamentos](#pagamentos)
+  - [Reembolsos](#reembolsos)
+  - [Checkout publico](#checkout-publico)
+  - [Webhooks Mercado Pago](#webhooks-mercado-pago)
+- [Exemplos](#-exemplos)
+- [Observacoes](#-observacoes)
+- [Termos de responsabilidade e isencao](#-termos-de-responsabilidade-e-isencao)
+
+---
+
+## ✅ Requisitos
 
 - Node.js >= 18
 - PostgreSQL
 
-## Instalacao
+---
 
-```
+## 📦 Instalacao
+
+```bash
 npm install
 ```
 
-## Configuracao
+---
+
+## ⚙️ Configuracao
 
 1) Copie o arquivo de exemplo
 
-```
+```bash
 copy .env.example .env
 ```
 
 2) Preencha o `.env`
 
-```
+```env
 PORT=3000
 DATABASE_URL=
 MP_ACCESS_TOKEN=
@@ -37,23 +63,29 @@ PUBLIC_APP_URL=
 MP_WEBHOOK_PATH_SECRET=
 ```
 
-## Banco de dados
+---
+
+## 🗄️ Banco de dados
 
 Execute o SQL abaixo para criar as tabelas:
 
-```
+```bash
 psql "$env:DATABASE_URL" -f .\sql\001_init.sql
 ```
 
-## Rodar a API
+---
 
-```
+## ▶️ Rodar a API
+
+```bash
 npm run dev
 ```
 
 A API inicia em `http://localhost:3000`.
 
-## Endpoints
+---
+
+## 🔌 Endpoints
 
 ### Config
 
@@ -121,11 +153,13 @@ A API inicia em `http://localhost:3000`.
   - Endpoint de webhook.
   - Configure `MP_WEBHOOK_PATH_SECRET` e `MP_WEBHOOK_SECRET`.
 
-## Exemplos
+---
+
+## 🧪 Exemplos
 
 Criar cobranca:
 
-```
+```bash
 curl -X POST http://localhost:3000/api/charges \
   -H "Content-Type: application/json" \
   -d "{\"amount\": 19.9, \"description\": \"Pedido 123\", \"customer\": {\"name\": \"Joao\", \"docNumber\": \"12345678900\"}}"
@@ -133,18 +167,22 @@ curl -X POST http://localhost:3000/api/charges \
 
 Pagar Pix:
 
-```
+```bash
 curl -X POST http://localhost:3000/api/charges/{chargeId}/pay/pix
 ```
 
-## Observacoes
+---
+
+## 📝 Observacoes
 
 - Esta API nao possui autenticacao. Se for expor em producao, proteja os endpoints.
 - Preencha `PUBLIC_BASE_URL` e `PUBLIC_APP_URL` para gerar links publicos e webhook corretamente.
 
-## Termos de responsabilidade e isencao
+---
 
-Este projeto e fornecido "como esta", sem garantias de qualquer tipo. O uso e por sua conta e risco.
-Nao nos responsabilizamos por perdas financeiras, indisponibilidades, falhas de integracao, ou
-quaisquer danos diretos ou indiretos decorrentes do uso desta API. Voce e o unico responsavel por
+## ⚠️ Termos de responsabilidade e isencao
+
+Este projeto e fornecido "como esta", sem garantias de qualquer tipo. O uso e por sua conta e risco.  
+Nao nos responsabilizamos por perdas financeiras, indisponibilidades, falhas de integracao, ou  
+quaisquer danos diretos ou indiretos decorrentes do uso desta API. Voce e o unico responsavel por  
 configurar, testar, validar e manter o ambiente, inclusive chaves do Mercado Pago e dados de clientes.
