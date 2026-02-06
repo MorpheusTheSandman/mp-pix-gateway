@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "description": "API do sistema MEI com Pix Mercado Pago",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "dev": "node src/index.js",
-    "start": "node src/index.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "jest",
+    "lint": "eslint src/**",
+    "format": "prettier --write src/**"
   },
   "engines": {
     "node": ">=18"
@@ -20,5 +23,12 @@
     "hpp": "^0.2.3",
     "pg": "^8.11.5",
     "pino-http": "^9.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.8.1",
+    "supertest": "^7.2.2"
   }
 }
